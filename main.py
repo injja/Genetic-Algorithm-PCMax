@@ -26,8 +26,8 @@ ostatnie_czasy=[]
 liczba_generacji=0
 licznik_stagnacji=0
 najlepszy_wynik=czas
-geny.sort(key=lambda x: maxCzasZadan(x, ilosc_procesorow, czasy_zadan))
-najlepszy_gen=geny[0]
+najlepszy_gen = min(geny, key=lambda x: maxCzasZadan(x, ilosc_procesorow, czasy_zadan))
+
 
 i=0
 while  1:
@@ -36,15 +36,15 @@ while  1:
         ostatnie_czasy.append(czas)
 
     czas=najlepszyCzas(geny, ilosc_procesorow, czasy_zadan)
-    print(czas)
-    if(czas<najlepszy_wynik):
-        najlepszy_wynik=czas
-        geny.sort(key=lambda x: maxCzasZadan(x, ilosc_procesorow, czasy_zadan))
-        najlepszy_gen=geny[0]
+
+    if czas < najlepszy_wynik:
+        najlepszy_wynik = czas
+        najlepszy_gen = min(geny, key=lambda x: maxCzasZadan(x, ilosc_procesorow, czasy_zadan)).copy()
+        print(najlepszy_gen)
+
     ostatnie_czasy.append(czas)
 
     if len(ostatnie_czasy)> 2:
-
         poprawa = ostatnie_czasy[-2] - najlepszy_wynik
         if poprawa <= wspolczynnik_poprawy:
             licznik_stagnacji += 1

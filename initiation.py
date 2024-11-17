@@ -29,3 +29,4 @@ def czasyZadanWProbkach(probki,ilosc_procesorow,czasy_zadan):
 
 def najlepszyCzas(probki,ilosc_procesorow,czasy_zadan):
     return min(czasyZadanWProbkach(probki,ilosc_procesorow,czasy_zadan))
+
